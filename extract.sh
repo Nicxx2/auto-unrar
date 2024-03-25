@@ -16,7 +16,7 @@ extract_rars() {
             # Use unrar or 7z to extract files
             unrar x -o- "$rarfile" "$output_dir/"
 
-			touch "$marker_file"
+            touch "$marker_file"
         
         fi
     done
