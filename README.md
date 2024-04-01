@@ -34,14 +34,14 @@ services:
 ```
 
 **Note:** Replace **/path/to/your/data** with the path to the directory you want Auto-UnRAR to scan.
-Also, remove "#" for any options that you want to use.
+Also, remove "#" for any options that you want to use. If you don't use those options, then the default options set in the extraction script will be used.
 
 
 **Customization Options:**
 - **SOURCE_DIRECTORY:** Directory to scan for RAR files.
 - **SLEEP_TIME:** Interval (in seconds) between scans. Default is 3600 seconds (1 hour).
-- **OVERWRITE_FILES:** When true, extracted files will overwrite any existing files with the same name.
-- **DO_NOT_USE_MARKERS:** If true, disables the use of marker files, leading to the extraction of all archives on each scan.
+- **OVERWRITE_FILES:** When true, extracted files will overwrite any existing files with the same name. Default: false
+- **DO_NOT_USE_MARKERS:** If true, disables the use of marker files, leading to the extraction of all archives on each scan. Default: false
 - **EXTRACT_TO_DIRECTORY:** Define a specific directory for extracted files by changing "/path/to/your/directory/to/add/extracted/data" under volume. If this option is not used, files are extracted to their respective archive locations.
-- **DELETE_RAR_AFTER_EXTRACTION:** Set to true to remove RAR files after successful extraction.<be>
+- **DELETE_RAR_AFTER_EXTRACTION:** Set to true to remove RAR files after successful extraction. Default: false <be>
 
