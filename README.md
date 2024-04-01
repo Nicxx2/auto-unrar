@@ -12,7 +12,7 @@ Auto-UnRAR is a Dockerized utility crafted to streamline the extraction of RAR f
 
 
 **Getting Started:**  
-To deploy Auto-UnRAR, fetch the Docker image from Docker Hub and execute it using Docker or Docker Compose with the following setup:<br>
+To use Auto-UnRAR, simply pull the Docker image from Docker Hub and run it with Docker or Docker Compose.<br>
 **Link:** https://hub.docker.com/r/nicxx2/auto-unrar
 
 ```yaml
