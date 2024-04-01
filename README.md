@@ -1,3 +1,7 @@
+<img src="https://github.com/Nicxx2/auto-unrar/blob/main/auto_unrar.png?raw=true" alt="Auto UnRAR" title="Auto UnRAR Script" width="500"/>
+
+
+
 **Auto-UnRAR: Enhanced Archive Extraction Tool**  
 
 Auto-UnRAR is a Dockerized utility crafted to streamline the extraction of RAR files across multiple environments seamlessly. Designed for both simplicity and efficiency, it automates the detection and extraction of RAR archives, operating quietly in the background. From media enthusiasts organizing vast libraries to professionals managing extensive data archives, Auto-UnRAR is the go-to solution for automating the archive extraction workflow.
