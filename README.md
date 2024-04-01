@@ -1,22 +1,19 @@
-**Auto-UnRAR: Archive Extraction Tool**
+**Auto-UnRAR: Enhanced Archive Extraction Tool**  
 
-Auto-UnRAR is a Dockerized tool designed to automate the extraction of RAR files across multiple platforms without the hassle. Built with simplicity and efficiency in mind, it periodically scans a designated directory for RAR archives and extracts them silently in the background. This tool is ideal for anyone looking to automate their archive extraction process, from hobbyists managing media libraries to professionals handling bulk data archives.
+Auto-UnRAR is a Dockerized utility crafted to streamline the extraction of RAR files across multiple environments seamlessly. Designed for both simplicity and efficiency, it automates the detection and extraction of RAR archives, operating quietly in the background. From media enthusiasts organizing vast libraries to professionals managing extensive data archives, Auto-UnRAR is the go-to solution for automating the archive extraction workflow.
 
-
-
-**Key Features:**
-
-- Cross-Platform Compatibility: Works on various devices, including PCs (Windows, Linux) and ARM-based devices like Raspberry Pi 4 / Raspberry Pi 5.
-- Preserves original RAR files: Ensures that RAR archives remain untouched and undeleted after the extraction process, retaining your original data for archival purposes or further use.
-- Automatic Scans: Configurable to run at specified intervals, ensuring new archives are promptly extracted without manual intervention.
-- Non-Destructive Extraction: Utilizes a smart extraction process that avoids overwriting existing files, ensuring your data remains intact. It leverages marker files to efficiently skip previously processed archives, making subsequent scans quicker and more resource-friendly.
-- Easy Configuration: Customize the scan directory and frequency through simple environment variables, making it adaptable to your specific needs.
+**Key Features:**  
+- Cross-Platform Compatibility: Runs effortlessly on a variety of systems, including Windows, Linux, and ARM-based devices such as Raspberry Pi 4 / Raspberry Pi 5.
+- Flexible Archive Handling: Offers options to either preserve or delete original RAR files post-extraction, catering to diverse data management preferences.
+- Configurable Automatic Scans: Performs scans at user-defined intervals, guaranteeing that new archives are extracted promptly with zero manual effort.
+- Smart Non-Destructive Extraction: Employs an extraction strategy that prevents overwriting of existing files by default, preserving the integrity of your data. With configurable settings, users can opt to overwrite existing files if needed.
+- Efficient Processing: Uses marker files to avoid reprocessing previously extracted archives, enhancing subsequent scans for speed and reduced resource consumption. This feature can be disabled for continuous extraction regardless of previous runs.
+- Customizable Setup: Easily tailor the scan directory, extraction behaviour, and scan frequency via simple environment variables, making it adaptable to specific requirements.
 
 
-**Getting Started:**<br>
-To use Auto-UnRAR, simply pull the Docker image from Docker Hub and run it with Docker or Docker Compose.<br>
+**Getting Started:**  
+To deploy Auto-UnRAR, fetch the Docker image from Docker Hub and execute it using Docker or Docker Compose with the following setup:<br>
 **Link:** https://hub.docker.com/r/nicxx2/auto-unrar
-
 
 ```yaml
 version: '3.8'
@@ -25,15 +22,26 @@ services:
     image: nicxx2/auto-unrar:latest
     volumes:
       - /path/to/your/data:/data
+     # - /path/to/your/directory/to/add/extracted/data:/extract_to  # Optional: Specify a directory for extracted files
     environment:
       - SOURCE_DIRECTORY=/data
-      - SLEEP_TIME=3600 # Scan every hour
+      - SLEEP_TIME=3600 # Default: Scan every hour
+      # - OVERWRITE_FILES=false # Set to true to overwrite existing files during extraction
+      # - DO_NOT_USE_MARKERS=false # Set to true to ignore markers and extract all archives
+      # - EXTRACT_TO_DIRECTORY=/extract_to #Optional
+      # - DELETE_RAR_AFTER_EXTRACTION=false # Set to true to delete RAR files post-extraction
 
 ```
 
 **Note:** Replace **/path/to/your/data** with the path to the directory you want Auto-UnRAR to scan.
+Also, remove "#" for any options that you want to use.
 
 
-**Customization:**
-- **path/to/your/data:** Set this to the directory you want to monitor for RAR files.
-- **SLEEP_TIME:** Determine how frequently (in seconds) you want Auto-UnRAR to scan your directory. Default is 3600 seconds (1 hour).
+**Customization Options:**
+- **SOURCE_DIRECTORY:** Directory to scan for RAR files.
+- **SLEEP_TIME:** Interval (in seconds) between scans. Default is 3600 seconds (1 hour).
+- **OVERWRITE_FILES:** When true, extracted files will overwrite any existing files with the same name.
+- **DO_NOT_USE_MARKERS:** If true, disables the use of marker files, leading to the extraction of all archives on each scan.
+- **EXTRACT_TO_DIRECTORY:** Define a specific directory for extracted files by changing "/path/to/your/directory/to/add/extracted/data" under volume. If this option is not used, files are extracted to their respective archive locations.
+- **DELETE_RAR_AFTER_EXTRACTION:** Set to true to remove RAR files after successful extraction.<be>
+
