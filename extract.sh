@@ -44,7 +44,8 @@ extract_rars() {
         if [ "$overwrite_files" = "true" ]; then
             overwrite_flag="-o+"
         fi
-
+        
+        echo # This adds a blank line before each extraction attempt for better readability
         echo -e "\n\nAttempting to extract: $rarfile to $output_dir"
         output=$(unrar x $overwrite_flag "$rarfile" "$output_dir/" 2>&1)
         result=$?
@@ -91,17 +92,25 @@ Auto-UnRAR by nicxx2
 Thank you for using my tool.
 EOF
 
+echo # Adds an extra line after the welcome message
+
 # Calculate hours and minutes from sleep_time for the welcome message
 hours=$((sleep_time / 3600))
 minutes=$(((sleep_time % 3600) / 60))
 
+echo # Adds an extra line before the check frequency message
+
 # Show initial message about check frequency
 echo "Checks will be done every $hours hour(s) and $minutes minute(s)."
+
+echo # Adds an extra line after the check frequency message
 
 # Message about the log behavior
 echo "Below it will show the extraction of the RAR files when the checking process is running."
 echo "If nothing is shown below, it's because nothing was extracted yet, or files were already marked in the past using this tool and thus are skipped."
 
+
+echo # Adds an extra line before starting the infinite loop
 
 # Infinite loop to run extraction based on user-defined frequency
 while true; do
