@@ -59,12 +59,25 @@ extract_rars() {
                 echo "Completed with file skips (existing files not overwritten): $rarfile"
                 touch "$marker_file" # Still mark as successfully extracted
             else
-                echo "Error extracting $rarfile"
-                touch "$errormarker_file"
+                # Increment error count in the errormarker file
+                if [ -f "$errormarker_file" ]; then
+                    error_count=$(<"$errormarker_file")
+                    error_count=$((error_count + 1))
+                    echo "$error_count" > "$errormarker_file"
+                else
+                    echo "1" > "$errormarker_file"
+                fi
+
+                # Create error skip marker if error count exceeds 5
+                if [ "$(cat "$errormarker_file")" -ge 5 ]; then
+                    touch "$errorskipmarker_file"
+                fi
+
+                echo "Error extracting $rarfile" 
             fi
         fi
 
-        if [ "$delete_rar_after_extraction" = "true" ]; then
+        if [ "$delete_rar_after_extraction" = "true" ] && [ -f "$marker_file" ]; then
             rm "$rarfile" # Delete the processed archive file
             if [[ "$rarfile" =~ \.part01\.rar$ ]] || [[ "$rarfile" =~ \.part1\.rar$ ]]; then
                 base_name=$(basename "$rarfile" .rar | sed 's/.part[0-9][0-9]*//')
