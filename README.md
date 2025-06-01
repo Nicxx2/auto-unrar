@@ -1,3 +1,13 @@
+## 💖 Support This Project
+
+If you found this helpful and want to support what I do, you can leave a tip here — thank you so much!
+
+[![Support on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/nicxx2)
+
+---
+
+
+
 <img src="https://github.com/Nicxx2/auto-unrar/blob/main/auto_unrar.png?raw=true" alt="Auto UnRAR" title="Auto UnRAR Script" width="500"/>
 
 
